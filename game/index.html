@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Deposit Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+    
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    h1 {
+      color: #333;
+    }
+    
+    form {
+      margin-top: 50px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    textarea,
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+    }
+    
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    
+    .image-preview {
+      width: 100%;
+      max-height: 200px;
+      overflow: hidden;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    
+    .image-preview img {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>diposit Commercial Bank  bank -8020391115 </h1>
+    <form action="/submit-deposit" method="post" enctype="multipart/form-data">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="amount">Amount:</label>
+      <input type="number" id="amount" name="amount" step="0.01" required>
+      
+      <label for="image">Image:</label>
+      <input type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)">
+      <div class="image-preview"></div>
+      
+      <label for="notes">Notes:</label>
+      <textarea id="notes" name="notes" rows="4" cols="50"></textarea>
+      
+      <input type="submit" value="Submit Deposit">
+    </form>
+  </div>
+
+  <script>
+    function previewImage(event) {
+      const image = event.target.files[0];
+      const imagePreview = document.querySelector('.image-preview');
+      
+      if (image) {
+        const reader = new FileReader();
+        
+        reader.onload = (event) => {
+          const img = document.createElement('img');
+          img.src = event.target.result;
+          img.alt = 'Deposit image preview';
+          imagePreview.innerHTML = '';
+          imagePreview.appendChild(img);
+        };
+        
+        reader.readAsDataURL(image);
+      } else {
+        imagePreview.innerHTML = '';
+      }
+    }
+  </script>
+</body>
+</html>
